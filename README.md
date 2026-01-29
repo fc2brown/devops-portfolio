@@ -1,5 +1,14 @@
 # DevOps Portfolio - Kubernetes CI/CD Pipeline
 
+[![CI Pipeline](https://github.com/fc2brown/devops-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/fc2brown/devops-portfolio/actions/workflows/ci.yml)
+[![Security Scan](https://img.shields.io/badge/security-Trivy-blue)](https://github.com/fc2brown/devops-portfolio/security/code-scanning)
+[![Container](https://img.shields.io/badge/container-GHCR-green)](https://github.com/fc2brown/devops-portfolio/pkgs/container/devops-portfolio)
+[![Kubernetes](https://img.shields.io/badge/kubernetes-1.28-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?logo=argo&logoColor=white)](https://argoproj.github.io/cd/)
+[![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
+
 A production-grade Kubernetes deployment pipeline demonstrating infrastructure automation, security best practices, and GitOps principles.
 
 ## Project Overview
@@ -65,15 +74,21 @@ curl http://localhost:8000/health
 - Automatic container builds pushed to GitHub Container Registry
 - Git SHA-based image tagging for traceability
 
-### Security Implementation
+### Security
 - Multi-stage Docker builds minimizing attack surface
 - Non-root containers (UID 1000)
 - Read-only root filesystem
 - All Linux capabilities dropped
 - Kubernetes network policies enforcing zero-trust networking
-- Pod security standards
+- Pod security standards enforced
 - Resource limits preventing resource exhaustion
 - Automated vulnerability scanning in CI/CD pipeline
+
+**Current Scan Results:**
+- Python application dependencies: 0 vulnerabilities
+- Base OS packages: 109 vulnerabilities (primarily OpenSSL and glibc in Debian base image)
+  - 3 CRITICAL, 9 HIGH, 46 MEDIUM, 51 LOW
+  - Mitigated through container hardening, network isolation, and runtime security controls
 
 Detailed security analysis available in [docs/security.md](docs/security.md).
 
@@ -131,16 +146,6 @@ Detailed security analysis available in [docs/security.md](docs/security.md).
 5. Automatically syncs deployment to Kubernetes cluster
 6. Rolling update ensures zero-downtime deployment
 
-## Security Posture
-
-Current vulnerability scan results:
-- Python application dependencies: 0 vulnerabilities
-- Base OS packages: 109 vulnerabilities (primarily OpenSSL and glibc in Debian base image)
-  - 3 CRITICAL, 9 HIGH, 46 MEDIUM, 51 LOW
-  - Mitigated through container hardening, network isolation, and runtime security controls
-  
-Complete security analysis available in [docs/security.md](docs/security.md).
-
 ## Technology Stack
 
 | Category | Technology |
@@ -185,7 +190,7 @@ Complete security analysis available in [docs/security.md](docs/security.md).
 
 ## License
 
-MIT License
+GPL-3.0 License - See [LICENSE](LICENSE) file for details.
 
 ## Contact
 
